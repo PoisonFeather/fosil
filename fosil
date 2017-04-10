@@ -35,6 +35,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
    if [[ "$i" == 'y' || "$i" == 'yes'  ]]; 
       then 
       sudo ifconfig
+      ip address
       echo "ip address: "
    fi
     if [[ "$i" == 'n' || "$i" == 'no' ]];

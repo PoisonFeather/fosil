@@ -1,3 +1,4 @@
 1.make fosil nmap
 2.bluethooth integration
 3.before msf starts start postgresql
+4.make ip update to github everytime 

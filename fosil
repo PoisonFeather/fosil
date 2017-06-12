@@ -18,6 +18,7 @@ echo
 echo "1. Android Exploits (first)"
 echo "2. Ios Exploits (second)"
 echo "3. Wifi hacking (third)"
+echo "4. SSH into pi (fourth)"
 #20
 read f
 if [[ "$f" == 'first' || "$f" == '1'  ]];
@@ -26,15 +27,13 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
  echo "1.Browser "
  echo "2.App-exploit"
  read s
- fi
- if [[ "$s" == 'app' || "$f" == '2' ]];
-#30
+ if [[ "$s" == 'app' || "$s" == '2'  ]]
  then
   echo "enter your ip address:"
   echo "need ip address? (local) (y/n) :"
   read i
   fi
-   if [[ "$i" == 'y' ]]; 
+   if [[ "$i" == 'y' || "$i" == 'yes'  ]]; 
       then 
       sudo ifconfig
       echo "ip address: "
@@ -52,7 +51,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
     msfconsole -r android.rc
 
 fi
-
+fi
 if [[ "$s" == 'browser' || "$s" == '1' ]]; 
  then  
 msfconsole -r browser.rc
@@ -99,4 +98,14 @@ if [[ "$f" == 'third' || "$f" == 'wifi' || "$f" == '3'  ]];
  read cap 
 #100 
  sudo aircrack-ng -w $word -b $mac $cap
+fi
+
+if [[ "$f" == '4' || "$f" == 'fourth' || "$f" == 'raspberry' || "$f" == 'pi' ]]; 
+then
+echo "raspberry pi's address: " 
+read ras
+ping $ras
+sleep 2
+ssh root@$ras
+
 fi

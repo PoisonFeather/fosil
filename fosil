@@ -53,7 +53,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
     msfconsole -r android.rc
 fi
 fi
-fi
+
 if [[ "$s" == 'browser' || "$s" == '1' ]]
  then
  msfconsole -r browser.rc
@@ -112,4 +112,4 @@ ssh root@$ras
 
 fi
 echo bye bitcheass
-
+sleep 2

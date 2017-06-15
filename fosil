@@ -54,7 +54,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
 fi
 
 
-if [[ "$s" == 'browser' || "$s" == '1' ]]
+if [[ "$s" == 'browser' || "$s" == '1' ]];
  then
  msfconsole -r browser.rc
 fi
@@ -66,7 +66,7 @@ if [[ "$f" == 'second' || "$f" == '2' ]];
  echo "1.Browser-based exploit "
  echo "2.App-exploit (coming Soon)"
  read c
- if [[ "$c" == 'browser' ]];
+ if [[ "$c" == 'browser' || "$c" == '1'  ]];
    then
    msfconsole -r safari.rc
 #70
@@ -107,10 +107,12 @@ if [[ "$f" == '4' || "$f" == 'fourth' || "$f" == 'raspberry' || "$f" == 'pi' ]];
 then
 echo "raspberry pi's address: " 
 read ras
-ping $ras
-sleep 2
+ping $ras -c 5
+sleep 1
 ssh root@$ras
 fi
+sleep 2
+clear
 echo bye bitcheass
 sleep 2
 

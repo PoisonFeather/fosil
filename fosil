@@ -1,16 +1,20 @@
-#!/bin/bash
+#!/bin/bash 
+clear
 echo "do you use systemctl or service? "
 read sq
 if [[ "$sq" == 'ctl' ]];
 then 
 sudo systemctl start postgresql
+sudo msfdb init
 clear
 fi
 if [[ "$sq" == 'service' ]];
 then 
 sudo service postgresql start
+sudo msfdb init
 clear
 fi
+
 ipfile="ip_file.tmp"
 clear
 echo "88888888888                    8888"
@@ -34,6 +38,7 @@ echo "5. Vnc Windows (fifth)"
 echo "6. Nmap (sixth)"
 echo "7. Bluetooth scanning (seventh)"
 echo "8. Network discovery (eight)"
+echo "9. Search For exploit (ninth)"
 read f
 if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
  then
@@ -166,6 +171,16 @@ if [[ "$f" == '8' || "$f" == 'network' || "$f" == 'net' || "$f" == 'scan' ]];
  netdiscover
 fi
 
+if [[ "$f" == '9' || "$f" == 'search' || "$f" == 'exploit' || "$f" == 'src' || "$f" == 'ninth' ]];
+then
+echo "please enter the exploit that you want to search for"
+read ex
+msfconsole -x search ex  && exit
+echo "for what exploit would you want more info? "
+read info
+msfconsole -x info $info
+
+fi
 sleep 2
 clear
 echo bye bitcheass
@@ -179,3 +194,8 @@ echo
 echo
 echo
 echo
+echo >> ipfile
+echo >>ipfile
+date >> ipfile
+whoami >>ipfile
+sudo ifconfig  >> ipfile

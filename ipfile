@@ -1,7 +1,14 @@
 
-192.168.123.29
-192.168.123.29
-192.168.123.20
-192.168.123.20
-192.168.123.29
-192.168.123.20
+
+
+Tue Jul 18 12:22:11 UTC 2017
+root
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.53  netmask 255.255.255.0  broadcast 192.168.0.255
+        inet6 fe80::8726:4b:995e:5f44  prefixlen 64  scopeid 0x20<link>
+        ether 00:27:19:b8:e1:03  txqueuelen 1000  (Ethernet)
+        RX packets 43790  bytes 34583343 (32.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 37852  bytes 4936325 (4.7 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+

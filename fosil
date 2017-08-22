@@ -1,22 +1,11 @@
 #!/bin/bash 
 clear
-echo "do you use systemctl or service? "
-read sq
-if [[ "$sq" == 'ctl' ]];
-then 
 sudo systemctl start postgresql
 sudo msfdb init
 clear
-fi
-if [[ "$sq" == 'service' ]];
-then 
-sudo service postgresql start
-sudo msfdb init
-clear
-fi
-
 ipfile="ip_file.tmp"
 clear
+
 echo "88888888888                    8888"
 echo "88                               88"
 echo "88                               88"
@@ -25,7 +14,9 @@ echo "88      a8      8a  I8[      88  88"
 echo "88      8b      d8   Y8ba,   88  88"
 echo "88      8a,   ,a8  aa    ]8I 88  88"
 echo "88        YbbdP      YbbdP   88  8888"
+
 sleep 2
+
 echo 
 echo 
 echo 
@@ -175,11 +166,16 @@ if [[ "$f" == '9' || "$f" == 'search' || "$f" == 'exploit' || "$f" == 'src' || "
 then
 echo "please enter the exploit that you want to search for"
 read ex
-msfconsole -x search ex  && exit
-echo "for what exploit would you want more info? "
-read info
-msfconsole -x info $info
-
+msfconsole -x search $ex
+echo "Do you want some more info about your chonsen exploit ?"
+echo "y/n"
+read cho
+if [[ $cho == "y" ]]
+ then
+ echo "the name of the exploit: "
+ $rex
+ msfconsole -x info $rex
+fi
 fi
 sleep 2
 clear
@@ -199,3 +195,4 @@ echo >>ipfile
 date >> ipfile
 whoami >>ipfile
 sudo ifconfig  >> ipfile
+

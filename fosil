@@ -30,6 +30,7 @@ echo "6. Nmap (sixth)"
 echo "7. Bluetooth scanning (seventh)"
 echo "8. Network discovery (eight)"
 echo "9. Search For exploit (ninth)"
+echo "10.Download wordlist or make your own"
 read f
 if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
  then
@@ -182,6 +183,31 @@ if [[ $cho == "y" ]]
  msfconsole -x info $rex
 fi
 fi
+
+if [[ $f == "ten" || $f == "10" || $f == "wordlist" ]]
+then 
+echo "Do you want to download a wordlist or do you want to make your own?"
+echo Download/Make
+read word
+if [[ $word == "Download" || $word == "download" || $word == "1" ]]
+then
+echo "Downloading ..."
+git clone https://github.com/PoisonFeather/wordlist
+fi
+
+if [[ $word == "Make" || $word == "make" ||  $word == "2" ]]
+then 
+echo "please enter a minimum:"
+read minimum
+echo "please enter a maximum:"
+read max
+crunch $minimum $max
+
+
+fi
+
+fi
+
 sleep 2
 clear
 echo bye bitcheass

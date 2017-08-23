@@ -12,3 +12,7 @@
 2017/06/30 22:17:05: info: threader_start::pthread_create(): created thread -1253983424
 2017/06/30 22:17:14: info: threader_reap::pthread_join(): joined thread -1253983424
 2017/06/30 22:17:14: info: btscanner shutting down
+2017/08/23 21:37:53: info: btscanner starting
+2017/08/23 21:37:55: info: threader_start::pthread_create(): created thread -1254167744
+2017/08/23 21:39:28: info: threader_reap::pthread_join(): joined thread -1254167744
+2017/08/23 21:39:28: info: btscanner shutting down

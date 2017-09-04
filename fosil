@@ -206,8 +206,7 @@ crunch $minimum $max
 
 fi
 
-fi
-
+fi 
 sleep 2
 clear
 echo bye bitcheass
@@ -221,6 +220,9 @@ echo
 echo
 echo
 echo
+sudo systemctl stop postgresql
+sudo msfdb stop
+sudo msfdb delete
 echo >> ipfile
 echo >>ipfile
 date >> ipfile

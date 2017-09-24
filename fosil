@@ -4,6 +4,7 @@ sudo systemctl start postgresql
 sudo msfdb init
 clear
 ipfile="ip_file.tmp"
+on=1
 clear
 
 echo "88888888888                    8888"
@@ -15,8 +16,8 @@ echo "88      8b      d8   Y8ba,   88  88"
 echo "88      8a,   ,a8  aa    ]8I 88  88"
 echo "88        YbbdP      YbbdP   88  8888"
 
-sleep 2
-
+if [[ $on == 1 ]]
+then
 echo 
 echo 
 echo 
@@ -31,6 +32,7 @@ echo "7. Bluetooth scanning (seventh)"
 echo "8. Network discovery (eight)"
 echo "9. Search For exploit (ninth)"
 echo "10.Download wordlist or make your own"
+echo "100.exit"
 read f
 if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
  then
@@ -123,6 +125,7 @@ if [[ "$f" == 'third' || "$f" == 'wifi' || "$f" == '3'  ]];
  read cap 
 #100 
  sudo aircrack-ng -w $word -b $mac $cap
+ service NetworkManager start
 fi
 
 if [[ "$f" == '4' || "$f" == 'fourth' || "$f" == 'raspberry' || "$f" == 'pi' ]]; 
@@ -194,7 +197,7 @@ then
 echo "Downloading ..."
 git clone https://github.com/PoisonFeather/wordlist
 fi
-
+fi
 if [[ $word == "Make" || $word == "make" ||  $word == "2" ]]
 then 
 echo "please enter a minimum:"
@@ -205,8 +208,15 @@ crunch $minimum $max
 
 
 fi
-
+if [[ $f == "100" || $f == "exit" ]]
+then 
+on=0
 fi 
+./fosil
+fi
+if [[ $on == 0 ]]
+then 
+then
 sleep 2
 clear
 echo bye bitcheass
@@ -228,4 +238,4 @@ echo >>ipfile
 date >> ipfile
 whoami >>ipfile
 sudo ifconfig  >> ipfile
-
+fi

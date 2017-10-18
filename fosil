@@ -212,10 +212,12 @@ if [[ $f == "100" || $f == "exit" ]]
 then 
 on=0
 fi 
+if [[ "$on" == 1 ]] 
+then
 ./fosil
 fi
+fi
 if [[ $on == 0 ]]
-then 
 then
 sleep 2
 clear

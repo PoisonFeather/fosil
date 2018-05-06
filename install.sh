@@ -1,3 +1,3 @@
-sudo cp /fosil /bin/
+sudo cp /fosil/bin/
 ./fosil
 exit
